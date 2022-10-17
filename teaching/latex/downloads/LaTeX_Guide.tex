@@ -1,0 +1,406 @@
+\documentclass[12pt,fleqn]{article} 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[final]{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{abstract}
+\usepackage{lipsum}
+\usepackage{authblk}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage[caption = false]{subfig}
+\usepackage{titlesec}
+\usepackage{natbib}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{pdfpages}
+\usepackage[many]{tcolorbox}
+
+\addtolength{\jot}{8pt}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{5}
+
+\bibliographystyle{alpha}
+\pagenumbering{gobble}
+\theoremstyle{plain}
+
+\extrafloats{1000}
+
+\title{\vspace{-6ex}Introduction to \LaTeX and summary of basic functions}
+\author{Dr Gavin M Abernethy}
+\date{}
+\begin{document}
+
+\fontdimen2\font=2.5pt
+\fontdimen3\font= 2pt
+\linespread{1.3}
+\maketitle
+
+
+
+\newpage
+\section{What is LaTeX?}
+	LaTeX is a typesetting language specifically designed for creating mathematical documents. Documents prepared in LaTeX must be compiled, meaning that you write the source code (in a file with the .tex extension) and then run a program that interprets the .tex file to create the PDF output.
+	
+	
+\section{Set up}
+
+	LaTeX can be written using any plain text editor (Wordpad, Notepad, Sublime, Visual Studio, etc.). However, you will need to install a dedicated program that can interpret this data and compile the PDF.	
+	
+	\section{Programs for compiling .tex files}
+	
+	There are numerous free software options for this. I recommend choosing one of two methods:
+	\begin{itemize}
+		\item Local installation:
+			\begin{enumerate}
+				\item First install a ``TeX distribution'' - either TeX Live (\url{https://www.tug.org/texlive/}) or MikTeX (\url{https://miktex.org/howto/install-miktex}).
+				\item  \emph{Then}, if it was not already included in the previous package, install an editor such as TexMaker (\url{https://www.xm1math.net/texmaker/}).
+			\end{enumerate}
+		\item Alternatively (and much more easily!), you can create an account on Overleaf (\url{https://www.overleaf.com/}). This is a cloud-hosted browser-based solution that many staff use and which does not require any installation. Simply register an account, then go to ``New Project'', ``Upload Project'', and choose the compressed folder \verb!minimal_template.zip!
+	\end{itemize}
+	~\\
+	There are also numerous other free software choices. Those popular amongst the mathematics staff include:
+	\begin{itemize}
+		\item TeXworks (\url{http://www.tug.org/texworks/})
+		\item Sublime text editor in combination with a plug-in called latextools (\url{https://www.sublimetext.com/})
+		\item TeXnicCenter (\url{https://www.texniccenter.org/})
+		\item TeXStudio (\url{https://www.texstudio.org/})
+	\end{itemize}
+	~\\
+	Most of these options are available free for both Windows and MacOS, and (like TeXMaker) they will also require installing a ``TeX distribution'' such as MikTeX (\url{https://miktex.org/howto/install-miktex}) \emph{beforehand}!
+	
+	\subsection{Document class}
+	The first decision to make in a .tex file is the document class - this is essentially which template the document should load. Common options include the \verb!article! class (this is used for anything simple such as notes, tutorial solutions, preprint research articles, etc.), the \verb!thesis! and \verb!book! classes, and \verb!beamer! which is used for creating PowerPoint-style slides. Many research journals produce their own article classes, so that submissions can be formatted into their desired form.\\
+	\\
+	For the project report, we will stick with the default \verb!article! class.
+	
+	\subsection{Packages}
+	After selecting the class, the next few lines of a .tex file will state which extra packages should be loaded. For example:\\~\\
+	\verb!\usepackage{pdfpages}!\\
+	~\\
+	Loading this package allows you to use a command that incorporates other PDF documents into you own document.\\~\\
+	Similar to importing packages in Python, packages contain extra commands that you can access. In the provided template, we have loaded the most common packages (e.g. \verb!amsmath! and \verb!amssymb! which enable maths symbols). Advanced users may wish to load other packages to access more options, although note that conflict between packages (e.g. that both try to define the same command) is a common source of errors. Particularly useful packages include \verb!hyperref! and \verb!enumitem!, although there are many others.\\
+	\\
+	For final year projects, we have created a custom package and loaded it in the template. This sets out the frontmatter, appendices, and the two-column format for the main body of the report.
+	
+\subsection{Frontmatter}
+	Following this, in most document types, you can state the title, the author and the date. Then begin the document and generate the title page. This is achieved by (at minimum):\\~\\
+	\verb!\title{Introduction to LaTeX and summary of basic functions}!\\
+	\verb!\author{My name}!\\
+	\verb!\date{\today}!\\
+	\verb!\begin{document}!\\
+	\verb!\maketitle!\\
+	~\\
+	The end of the document will need to contain the closing line:\\~\\
+	\verb!\end{document}!
+	
+\newpage
+\section{Typing in LaTeX}
+Like any programming language, you can comment out lines. This is done using the percentage symbol:\\
+\\
+\verb! % this is a comment !\\
+\\
+Commands in LaTeX are denoted by the backslash, and the argument is passed in curly brackets, as you can see from the examples above.\\
+\\
+Typing in LaTeX is separated into two main modes - you are always in either \emph{text mode} or \emph{math mode}. Both appear differently, and have their own commands that are only recognised when in the appropriate mode.
+
+\subsection{Structure}
+\label{subsec:structure}
+You should break your document up into numbered sections. To create a section with the title ``Introduction'', we can use \verb!\section{Introduction}!, and to add a subsection (i.e. numbered 1.1, 1.2, 1.3, etc.) use \verb!\subsection{Name of this subsection}!\\
+\\
+In all cases, LaTeX will figure out the appropriate numbering - so I did not have to name this current subsection \ref{subsec:structure}, that was determined for me, and if I inserted or removed some (sub)sections it would automatically update the numbering to be correct.\\~\\
+Sometimes we would prefer to have a section title, but without the numbering. This can be achieved by including an asterisk after the command. For example, we usually don't number the references section:\\~\\
+\verb!\section*{References}!.
+
+\subsection{Text mode}
+You will be in text mode by default. In this mode, you can type regular text like any word processing software. Note that LaTeX will decide how to space out words, so including say ten spaces between two words will actually have no effect.\\
+\\
+Commands for this mode include formatting the text:
+\begin{itemize}
+	\item I would like to \verb!\emph{italicize this}! = I would like to \emph{italicize this}
+	\item I would like to \verb!\textbf{bold font this}! = I would like to \textbf{bold font this}
+\end{itemize}
+
+	\subsubsection{Manipulating space}
+	We can force a new page using \verb!\newpage!, or take a new line using two backslashes \verb!\\!. If you get the error ``no line here to end'', such as from trying to introduce a linebreak immediately after a figure, or if you are trying to add two subsequent linebreaks, you can get around this by prefacing the backslashes with \verb!~!. So to break two lines (such as the end of this paragraph!): \verb!\\~\\!\\~\\
+Alternatively, you can create a ``medium-sized''  or ``large'' linebreak using the commands \verb!\medskip! and \verb!\bigskip!.\\~\\
+We can also manually attempt to create horizontal or vertical whitespace (for example to spread out parts of an equation) using \verb!\hspace{5mm}! and \verb!\vspace{5mm}!, although this can be a bit messy.	
+	
+	\subsection{Lists}
+	To add lists in the form of bullet points, we can begin the \verb!itemize! environment. This, like anything that has a \verb!\begin{}! must also be complemented by an \verb!\end{}!. So for example:\\~\\
+	\verb!\begin{itemize}!\\
+	\verb!     \item The first bullet point here.!\\
+	\verb!     \item The second bullet point here.!\\
+	\verb!\end{itemize}!\\~\\
+	This creates the following output:
+	\begin{itemize}
+		\item The first bullet point here.
+		\item The second bullet point here.
+	\end{itemize}
+	~\\
+	If you want to use numbered points, replace \verb!itemize! with \verb!enumerate!.	
+	
+\newpage
+\subsection{Math mode}
+	When typing mathematics, we need to enter math mode. This is a bit like entering the equation editor in MS Word, but it is much more powerful and it is very easy to create composite commands to produce whatever we need.\\
+	\\
+	Math mode can either be ``inline'', meaning that it occurs within a block of text. An example would be this equation $y=mx+c$ which, as you can see, is within this text. On the other hand, there are various ways of creating a standalone math environment, such as the equation:
+	\begin{equation*}
+		y = ax^{2} + bx + c
+	\end{equation*}
+	which was given its own line etc.\\
+	\\
+	In math mode, spaces are completely ignored, so include them as you wish simply to increase the readability of the maths parts of your .tex file.
+		
+	
+	\subsubsection{Inline mathematics}
+	To insert inline maths, simply encase it in a pair of dollar signs.\\
+	\\
+	For example:\\
+	\\
+	``This is a line containing the equation $y=mx+c$''\\
+	\\
+	is created by typing:\\
+	\\
+	``\verb!This is a line containing the equation $y=mx+c$!''\\
+	~\\
+	Inline math should only be used for very small equations or for discussing a variable such as displacement, $x$, that needs to be italicised and in ``curly math font''. Anything important, large, or requiring numbering should not be written inline. It also usually doesn't look very nice if the expression is too large, such as $\frac{1}{13-y}$. 
+	
+	\newpage
+	\subsubsection{Single equation}
+	To type a single line of mathematics, centered in its own line, use the \verb!equation! environment:\\
+	\\
+	\verb!\begin{equation}!\\
+	\verb!      y_{1} = a x^{2} + bx + c !\\
+	\verb!\end{equation}!\\~\\
+	This creates a numbered equation:
+	\begin{equation}
+	 y_{1} = a x^{2} + bx + c 
+	\end{equation}~\\
+	Alternatively, we can include an asterisk after the command to avoid numbering:\\
+	\\
+	\verb!\begin{equation*}!\\
+	\verb!      y_{2} = a x^{2} + bx + c !\\
+	\verb!\end{equation*}!\\~\\
+	This creates a non-numbered equation:
+	\begin{equation*}
+	 y_{2} = a x^{2} + bx + c 
+	\end{equation*}
+	~\\
+	We can also enter a standalone line of mathematics using a backslash and square brackets:\\~\\
+	\verb!\[!\\
+	\verb!      y_{3} = a_{0} + a_{1}x + a_{2}x^{2} + \dots !\\
+	\verb!\]!\\
+	\\
+	Which results in:\\
+	\[ y_{3} =  a_{0} + a_{1}x + a_{2}x^{2} + \dots \]
+	
+		
+	\newpage
+	\subsubsection{Multi-line equations}
+	To include mathematics consisting of multiple lines, instead of the \verb!equation! environment we can use some alternatives such as \verb!eqnarray! which allows us to align the different lines at one point (such as around an equality), or the \verb!align! environment which can allow for multiple parts of the different lines to be in alignment. In any case, we use \verb!\\! to break to the next line, and all lines will be individually numbered unless we include the asterisk (as before).\\
+	\\
+	For an \verb!eqnarray! example, where we align the equality symbol on each line:\\~\\
+	\verb!\begin{eqnarray}!\\
+	\verb!     x &=& 1 + 3 \times 2 \\!\\
+	\verb!        &=& 1 + 6 \\!\\
+	\verb!        &=& 7!\\
+	\verb!\end{eqnarray}!\\
+	~\\
+	Which results in:
+	\begin{eqnarray}
+		x &=& 1 + 3 \times 2 \\
+	       &=& 1 + 6 \\
+	       &=& 7
+	\end{eqnarray}
+	~\\
+	Then for an \verb!align! example, where we align \emph{both} the $x$'s and the $y$'s on each line into two columns:\\~\\
+	\verb!\begin{align}!\\
+	\verb!    	&x=5 &y=17 \\!\\
+	\verb!    	&2x =1 &-2y = 0!\\
+	\verb!\end{align}!\\
+	~\\
+	Which results in:
+	\begin{align}
+	    &x=5 &y=17\\
+	    &2x =1 &-2y = 0
+	\end{align}
+	~\\
+	Finally, we could also use the \verb!multline! environment to split up a single very long equation over two lines. In this case, the first line is left-aligned while the second is right-aligned.
+	\newpage
+	~\\
+	For example:\\~\\
+	\verb!\begin{multline*}!\\
+	\verb!    y = a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+a_{4}x^{4}+a_{5}x^{5}+a_{6}x^{6} \\!\\
+	\verb!        +a_{7}x^{7}+a_{8}x^{8}+a_{9}x^{9}+a_{10}x^{10}+a_{11}x^{11}+a_{12}x^{12}!\\
+	\verb!\end{multline*}!\\
+	~\\
+	Which results in:
+	\begin{multline*}
+	    y = a_{0} + a_{1}x + a_{2}x^{2} + a_{3}x^{3} + a_{4}x^{4} + a_{5}x^{5} + a_{6}x^{6}  \\
+	        + a_{7}x^{7}+ a_{8}x^{8} + a_{9}x^{9} + a_{10}x^{10} + a_{11}x^{11} + a_{12}x^{12}
+	\end{multline*}
+	
+	\subsubsection{Common math commands}
+	You have already seen some commands that can be used in math mode in the above examples:
+	\begin{itemize}
+		\item Indices, subscripts and superscripts: \verb!$x_{1}$! = $x_{1}$; \hspace{5mm} \verb!$x^{2}$! = $x^{2}$
+		\item Greek letters: \verb!$\alpha, \beta, \gamma, \sigma$! = $\alpha, \beta, \gamma, \sigma$
+		\item Fractions: \verb!$\frac{x}{y}$! = $\frac{x}{y}$
+		\item Common trigonometric functions: \verb!$\sin(x), \cos(13)$! = $\sin(x), \cos(13)$
+		\item Multiplication: \verb!$ 13 \times a $! = $ 13 \times a $
+		\item Division: \verb!$ 13 \div a $! = $ 13 \div a $
+		\item Derivatives: to obtain the upright font used for derivatives, wrap the ``d'' in \verb!\mathrm{}!, so for example:\\~\\
+		\verb!$\frac{\mathrm{d}y}{\mathrm{d}x}$! = $\frac{\mathrm{d}y}{\mathrm{d}x}$
+		\item Integrals: \verb!$\int \cos(x) \mathrm{d}x$! = $\int \cos(x) \mathrm{d}x$
+	\end{itemize}
+	~\\
+	An example that brings much of this together is the general homogeneous second order ODE:\\
+    \begin{equation*}
+    	a \frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}} + b\frac{\mathrm{d}y}{\mathrm{d}x} + cy=0
+    \end{equation*}
+    ~\\
+    which we can create using:\\~\\
+    \verb!\begin{equation*}!\\
+    \verb!   a\frac{\mathrm{d}^{2}y}{\mathrm{d}x^{2}} + b\frac{\mathrm{d}y}{\mathrm{d}x} + cy=0!\\
+    \verb!\end{equation*}!
+	\newpage
+\section{Other environments}
+	
+	Creating other objects, such as figures or tables, will require entering a new environment.
+
+	\subsection{Figures}
+	To insert a figure, you will want to make sure it is in the same folder as your .tex files, then we can use the \verb!figure! environment.\\
+	\\
+	In this example, we enter the figure environment, using the optional argument \verb![H]! to tell LaTeX to place the figure exactly \emph{here} in the document. The \verb!\centering! command then ensures that the figure is centrally-justified, and then we request the figure - stating that it should be scaled so that it is 80\% of the linewidth. Finally, we add a caption, and close the figure environment.\\~\\
+    \verb!\begin{figure}[H]!\\
+    \verb!	\centering!\\
+    \verb!	\includegraphics[width=0.8\linewidth]{lya1.png}!\\
+    \verb! \caption{Lyapunov exponents in a particular two-dimensional map}!\\
+    \verb!\end{figure}!\\
+    ~\\
+    Resulting in:\\
+    \begin{figure}[H] 
+    	\centering 
+    	\includegraphics[width=0.8\linewidth]{lya1.png}
+    	\caption{Lyapunov exponents in a particular two-dimensional map}
+    \end{figure}
+
+	\newpage
+	\subsection{Tables}
+	When creating tables, we have a great deal of flexibility and control, however this comes at the cost of being rather more complex than in other programs such as word.\\
+\\
+We can create a \verb!table! environment, to control the location of the table, and then within that enter the \verb!tabular! environment. When doing so, it is necessary to indicate how many columns there should be, and if a vertical line should visibly separate them. For example, to have five columns but only the first one separated by a vertical line, and with vertical lines around the outer edges of the table, you would write \verb!\begin{tabular}{|c|c c c c|}!. Then you go line-by-line from top to bottom, separating the elements in each column (on the same line) by ampersands, and indicating where you would like any horizontal lines with \verb!\hline!.\\~\\
+Consider this example:\\~\\
+\verb!\begin{table}[H]!\\
+\verb!	\centering!\\
+\verb!	\begin{tabular}{|c|c|}!\\
+\verb!		    \hline!\\
+\verb!		    \textbf{Region} & \textbf{Area ($m^{2}$)}\\!\\
+\verb!		    \hline !\\
+\verb!		    London & 1580000000\\!\\
+\verb!		    South East & 19100000000\\!\\
+\verb!		    South West & 23950000000\\!\\
+\verb!		    East Midlands & 15600000000\\!\\
+\verb!		    West Midlands & 13000000000\\!\\
+\verb!		    East of England & 19100000000\\!\\
+\verb!		    North East & 8600000000 \\!\\
+\verb!		    Yorkshire and the Humber & 15400000000 \\!\\
+\verb!		    North West & 14200000000\\!\\
+\verb!		    Wales &  20800000000 \\!\\
+\verb!		    Scotland &  78800000000 \\!\\
+\verb!		    \hline!\\
+\verb!	\end{tabular}!\\
+\verb!	\caption{Geographic area of the regions of Great Britain}!\\
+\verb!\end{table}!\\
+~\\
+Which results in:
+	
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		 \textbf{Region} & \textbf{Area ($m^{2}$)}\\
+		\hline 
+		London & 1580000000\\
+		 South East & 19100000000\\
+		South West & 23950000000\\
+		East Midlands & 15600000000\\
+		 West Midlands & 13000000000\\
+		East of England & 19100000000\\
+		North East & 8600000000 \\
+		Yorkshire and the Humber & 15400000000 \\
+		North West & 14200000000\\
+		Wales &  20800000000 \\
+		Scotland &  78800000000 \\
+		\hline
+	\end{tabular}
+	\caption{Geographic area of the regions of Great Britain}
+\end{table}
+
+\newpage
+\section{Debugging}
+Very often, your PDF will fail to compile and the program you are using will present you with a set of angry red text.\\
+\\
+LaTeX, like any programming language, does not tolerate any errors and will fail if there is anything missing or incomplete. General principles of solving bugs that may arise include:
+\begin{itemize}
+	\item Have you ended every environment that you began? i.e. For every \verb!\begin{equation}! do you have an \verb!\end{equation}! to match it? Similarly, dollar signs should occur in pairs, and curly brackets always need to be closed.
+	\item Have you spelled commands correctly? 
+	\item Have you tried to use a command in the text environment that only works in the math environment?
+\end{itemize}
+
+\newpage
+\section{Referencing}
+
+To reference in LaTeX, you will need to have a separate file with the extension \verb!.bib! containing the details of each reference in a very specific format, using resembling this example:\\~\\
+\verb!@article{may1976simple,!\\
+	\verb!author = {May, Robert M},!\\
+	\verb!date-added = {2022-07-07 15:16:20 +0100},!\\
+	\verb!date-modified = {2022-07-07 15:16:20 +0100},!\\
+	\verb!journal = {Nature},!\\
+	\verb!pages = {459},!\\
+	\verb!title = {Simple mathematical models with very complicated dynamics},!\\
+	\verb!volume = {261},!\\
+	\verb!year = {1976}}!\\
+	\verb!}!\\
+\\
+Fortunately you can usually download a reference for an individual article in this format directly from the article's listing on the journal website, or from the Google Scholar hit for the paper. Look for ``Cite this paper'' or something similar, and choose the ``BibTeX'' option. This will download a file containing the reference in the above form, and you can add it to your \verb!.bib! file containing all of your references.\\
+\\
+You may also wish to use specialist software, such as Bibdesk, Refworks or Mendeley to help you with this if you are thinking of going on to a MSc or PhD where you will have hundreds or thousands of references to manage. These tools store all of your references in a searchable database.\\
+\\
+Now that you have a copy of the reference, how do you actually insert it into your paper?\\
+\\
+As with everything else, ensure that the \verb!.bib! file containing the reference (which we shall call \verb!references.bib!) is in the same folder as your \verb!.tex! file. Then look at the first line of that paper's reference. The name \verb!may1976simple! is the unique identifier, which we use to insert the reference using the \verb!\cite{}! command.\\
+\\
+Thus:\\
+\\
+``\verb!This \cite{may1976simple} is an interesting paper.!''\\
+\\
+results in:\\
+\\
+``This \cite{may1976simple} is an interesting paper.''\\
+\newpage
+~\\
+However, this won't work until we include the following commands at the end of our document:\\~\\
+\verb!\bibliographystyle{apacite}!\\
+\verb!\bibliography{references}!\\~\\
+The first of these tells LaTeX that we want the reference in the final bibliography to be in the APA style (this is a requirement), and the second line indicates when we want to create the Bibliography featuring all of the references that we have used in the document. The argument \verb!{references}! tells LaTeX that it can locate the details of the reference in our file \verb!references.bib!\\
+\\
+Finally, note that we many need to run our compiler program up to 4 times to get the references working correctly:
+\begin{enumerate}
+	\item Once using the \verb!pdflatex! or \verb!Quick Build! option (varies by program).
+	\item Once using the \verb!BibTeX! option, as it looks for the correct \verb!.bib! file.
+	\item Again using the \verb!pdflatex! or \verb!Quick Build! option (varies by program).
+	\item Possibly again using the \verb!pdflatex! or \verb!Quick Build! option (varies by program)!
+\end{enumerate}
+The results of these commands should produce the in-text citation above, and the Bibliography below:
+
+\bibliographystyle{apacite}
+\bibliography{references}
+
+	
+
+\end{document}

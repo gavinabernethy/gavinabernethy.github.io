@@ -1,0 +1,110 @@
+\documentclass[12pt,fleqn]{article} 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[final]{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{lipsum}
+\usepackage{authblk}
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{natbib}
+\usepackage[many]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+
+\bibliographystyle{alpha}
+
+
+\title{\vspace{-6ex}LaTeX Exercises}
+\author{Dr Gavin M Abernethy}
+\date{}
+\begin{document}
+
+\fontdimen2\font=2.5pt
+\fontdimen3\font= 2pt
+\linespread{1.3}
+\maketitle
+~\\
+Attempt the following on your PC/laptop. You may need to refer to the videos or to the LaTeX guide PDF that you have been provided with (this contains many more details than the videos!)\\
+\\
+The solutions for the typesetting Question 5 can be obtained by examining the source code for this document, so you can see how I created the questions.
+
+\begin{enumerate}
+	
+	\section*{Essentials}
+	\item First, make sure that you have either registerd an Overleaf account, or that you have a LaTeX distribution and editor/compiler installed. See the ``Getting started with LaTeX'' document to help with this, if you have not already done so.
+	
+	\item Next, you want to make sure that it is working correctly. Open the document\\~\\
+	\verb!minimal_template.tex!\\~\\and compile it. Do not move on from this stage until you have successfully created the pdf. 
+	
+	\item Once you have the base PDF, edit the frontmatter details - add in your name, your supervisors's name and the title of your project.
+	
+	\item Add some additional sections between the Introduction and the Discussion, and title them with some general topics or ideas from your project. (e.g. what are the main topics you will be looking at; would a Methods section be appropriate; etc.)
+	
+	\newpage
+	\section*{Typesetting}
+	
+	\item Let's try adding some formatted text and mathematics. Create a new section in your template called ``Practice''. In it, try to reproduce the following entries contained in the boxes from my recent Spotify records (not accurate). \textbf{Hint:} compile your script as frequently and incrementally as possible (especially when using a command for the first time). This will make it \emph{much} easier to identify the source of errors that prevent your code from compiling!\\
+	\begin{enumerate}
+		\item First some italics and inline mathematics:\\
+			\begin{tcolorbox}
+			Christopher Tin: \emph{To Shiver The Sky} was streamed $N = 100(\sin(3) + \pi)$ times.
+			\end{tcolorbox}
+			~\\
+		\item Then some bold text and inline mathematics including fractions, subscripts and superscripts:\\
+			\begin{tcolorbox}
+			Music by \textbf{BLACKPINK} was streamed $N_{1} = \frac{N+1}{2} + 16 \times 3^{-1}$ times.
+			\end{tcolorbox}
+			~\\
+		\item Now use the \verb!equation! environment to create a standalone expression, including an integral:\\
+			\begin{tcolorbox}	
+			Number of hours, $H$, spent listening to synthwave radio playlists:
+			\begin{equation*}
+			 	H = N_{1}^{2} \div (14 + \cos(N)) + \int_{0}^{6} \alpha^{N_{1}} \ \mathrm{d}\alpha
+			 \end{equation*}
+			 \end{tcolorbox}
+			 ~\\
+			\newpage
+		\item Finally use either \verb!eqnarray! or \verb!align! for a series of lines of mathematics, that will also require the \verb!sqrt! function and some fractions:\\
+		\begin{tcolorbox}	
+			Number, $\beta$, of evenings spent listening to the \emph{Pirates of the Caribbean} soundtrack:
+			\begin{eqnarray}
+				\beta &=& \frac{6^{2} - \sqrt{18 \times 2 \div 9}}{2^{-1}} \\
+						&=& \frac{36 - \sqrt{4}}{1/2} \\
+						&=& 2( 36 - 2 ) \\
+						&=& 2 \times 34 \\
+						&=& 68
+			\end{eqnarray}
+		\end{tcolorbox}
+		
+	\end{enumerate}
+	
+	
+	\section*{Referencing}
+	\item Using the referencing video to help you, look up a reference for a paper related to your project (use Google Scholar to search for keywords related to your topic if you can't think of anything), and add it to your document. 
+	
+	\section*{Figures and tables}
+	\item Search the internet for an image related to your topic - it could illustrate a mathematical object, or perhaps a portrait of a historical figure who played a significant role in your topic. Add it to your document, and make sure you center-align it, add a suitable caption, and adjust the size to be appropriate.
+	
+	\item Finally, reproduce the table below in your document. You will probably want to copy-paste the code provided in the guide or the more detailed template with examples, and then try to adjust it rather than creating a table from scratch!\\
+	
+	 \begin{table}[H]
+	 \centering
+    \begin{tabular}{|c|c|c|c|c|} % this creates 5 columns
+        \hline
+        \textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} & \textbf{Header 4}  & \textbf{Header 5}  \\
+        \hline
+        $\alpha_{1,1}$ & $\alpha_{1,2}$ & $\alpha_{1,3}$ & $\alpha_{1,4}$ & $\alpha_{1,5}$ \\
+        $\alpha_{2,1}$ & $\alpha_{2,2}$ & $\alpha_{2,3}$ & $\alpha_{2,4}$ & $\alpha_{2,5}$ \\
+        $\alpha_{3,1}$ & $\alpha_{3,2}$ & $\alpha_{3,3}$ & $\alpha_{3,4}$ & $\alpha_{3,5}$ \\
+        \hline
+    \end{tabular}
+  \end{table}
+
+\end{enumerate}
+
+	
+
+\end{document}
