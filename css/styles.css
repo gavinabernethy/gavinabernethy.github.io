@@ -3,7 +3,7 @@
 
 body {
   background-color: #0d051a;
-  max-width: 85%;
+  max-width: 95%;
   margin: auto;
   font-family: "Verdana", sans-serif;
   line-height: 1.4;
@@ -70,7 +70,7 @@ table {
 }
 
 .profile-td {
-  padding: 0 50px;
+  padding: 0 5px;
 }
 
 a {
